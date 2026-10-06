@@ -106,8 +106,54 @@ No erro 400, o objeto `campos` traz uma mensagem por campo. O frontend pode most
 
 ---
 
-## Em breve
+## Autenticação — /api/auth
 
-- Login e cadastro de usuários
-- Agendamento de consultas
-- Prontuários
+Login por sessão (cookie `JSESSIONID`). O navegador envia o cookie sozinho nas
+chamadas `fetch` feitas a partir das páginas do próprio projeto.
+
+| Método | URL | Acesso | Corpo | Resposta |
+|---|---|---|---|---|
+| POST | /api/auth/login | público | `{ "login", "senha" }` | 200 `{ "login", "perfil" }` / 401 |
+| POST | /api/auth/logout | logado | — | 200 |
+| GET | /api/auth/me | logado | — | 200 `{ "login", "perfil" }` / 401 |
+| POST | /api/auth/cadastro | público | login, senha e `paciente` (veja abaixo) | 201 `{ "id", "login", "perfil", "ativo" }` |
+
+Corpo do cadastro (paciente se cadastrando sozinho):
+
+```json
+{
+  "login": "maria.silva",
+  "senha": "senha123",
+  "paciente": { "nome": "...", "cpf": "...", "dataNascimento": "1990-05-20",
+                "telefone": "...", "email": "...", "endereco": "..." }
+}
+```
+
+Regras: login de 4 a 60 caracteres (letras, números e `. _ @ -`), senha de 6 a 72.
+Nos erros 400, os campos do paciente vêm com prefixo, por exemplo `paciente.cpf`.
+
+## Usuários — /api/usuarios (somente FUNCIONARIO)
+
+| Método | URL | Corpo | Resposta |
+|---|---|---|---|
+| POST | /api/usuarios | `{ "login", "senha", "perfil", "pessoaId" }` | 201 + usuário |
+| GET | /api/usuarios | — | 200 + lista |
+
+`perfil` aceita `MEDICO`, `FUNCIONARIO` ou `PACIENTE`. `pessoaId` é o id do médico,
+funcionário ou paciente já cadastrado que vai receber o acesso.
+
+## Quem acessa o quê
+
+| Recurso | FUNCIONARIO | MEDICO | PACIENTE |
+|---|---|---|---|
+| /api/pacientes | tudo | só GET | — |
+| /api/medicos | tudo | só GET | só GET |
+| /api/funcionarios | tudo | — | — |
+| /api/usuarios | tudo | — | — |
+
+## Códigos de erro novos
+
+- **401**: não está logado, ou login/senha inválidos
+- **403**: está logado, mas o perfil não tem permissão
+
+Usuário de teste: login `admin`, perfil FUNCIONARIO (a senha combinada na equipe).

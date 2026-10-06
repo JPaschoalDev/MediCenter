@@ -39,6 +39,10 @@ public class Medico {
     @Column(name = "data_cadastro", nullable = false, updatable = false)
     private LocalDateTime dataCadastro;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", unique = true)
+    private Usuario usuario;
+
     @PrePersist
     void aoCriar() {
         this.dataCadastro = LocalDateTime.now();
