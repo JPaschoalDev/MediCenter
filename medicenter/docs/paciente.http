@@ -1,0 +1,34 @@
+### Criar paciente
+POST http://localhost:8080/api/pacientes
+Content-Type: application/json
+
+{
+  "nome": "Maria da Silva",
+  "cpf": "12345678901",
+  "dataNascimento": "1990-05-20",
+  "telefone": "11999998888",
+  "email": "maria@email.com",
+  "endereco": "Rua das Flores, 100"
+}
+
+### Listar
+GET http://localhost:8080/api/pacientes
+
+### Buscar por id
+GET http://localhost:8080/api/pacientes/1
+
+### Atualizar
+PUT http://localhost:8080/api/pacientes/1
+Content-Type: application/json
+
+{
+  "nome": "Maria da Silva Souza",
+  "cpf": "12345678901",
+  "dataNascimento": "1990-05-20",
+  "telefone": "11999998888",
+  "email": "maria@email.com",
+  "endereco": "Rua das Flores, 200"
+}
+
+### Excluir
+DELETE http://localhost:8080/api/pacientes/1
