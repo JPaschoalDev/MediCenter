@@ -1,0 +1,31 @@
+### Criar médico
+POST http://localhost:8080/api/medicos
+Content-Type: application/json
+
+{
+  "nome": "Dr. Carlos Almeida",
+  "cpf": "98765432100",
+  "crm": "CRM-SP 123456",
+  "especialidade": "Cardiologia",
+  "telefone": "11988887777",
+  "email": "carlos@medicenter.com"
+}
+
+### Listar médicos
+GET http://localhost:8080/api/medicos
+
+### Criar funcionário
+POST http://localhost:8080/api/funcionarios
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza",
+  "cpf": "11122233344",
+  "cargo": "Recepcionista",
+  "dataAdmissao": "2025-03-10",
+  "telefone": "11977776666",
+  "email": "ana@medicenter.com"
+}
+
+### Listar funcionários
+GET http://localhost:8080/api/funcionarios
