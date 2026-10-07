@@ -1,0 +1,141 @@
+/* =========================================================
+   login.css - usado SOMENTE no login.html
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+/* Foto ocupando a tela toda, por trás da caixa */
+.imagem-login {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Caixa de login centralizada */
+.caixa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 40px);
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.93);
+    padding: 36px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.topo {
+    color: #1e88e5;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.15);
+}
+
+/* Campo de senha com o olhinho dentro */
+.campo-senha {
+    position: relative;
+}
+
+.campo-senha input {
+    padding-right: 46px;
+}
+
+.olho {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 44px;
+    width: 44px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Mensagem de erro */
+.erro {
+    color: #c62828;
+    font-size: 14px;
+}
+
+.erro[hidden] {
+    display: none;
+}
+
+/* Botões */
+.entrar,
+.cadastrar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #1e88e5;
+}
+
+.entrar {
+    background-color: #1e88e5;
+    color: white;
+    margin-top: 8px;
+}
+
+.entrar:hover {
+    background-color: #1565c0;
+    border-color: #1565c0;
+}
+
+.cadastrar {
+    background-color: white;
+    color: #1e88e5;
+}
+
+.cadastrar:hover {
+    background-color: #e3f2fd;
+}
